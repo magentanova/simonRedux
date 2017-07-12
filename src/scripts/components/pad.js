@@ -56,12 +56,6 @@ class Pad extends React.Component {
 				store.dispatch({
 					type: 'BEAT_LEVEL'
 				})
-				// setTimeout(()=> {
-				// 	store.dispatch({
-				// 		action: "LIGHT_PAD",
-				// 		color: null
-				// 	})
-				// }, 500)
 			}
 		}
 	}

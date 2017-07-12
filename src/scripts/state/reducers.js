@@ -11,7 +11,7 @@ export const aiSequence = (state = [getColor(),getColor()], action) => {
 		case "ADD_AI_COLOR": 
 			return state.concat(action.color)
 		case "LOSE":
-			return []
+			return [getColor(),getColor()]
 		default: 
 			return state
 	}
