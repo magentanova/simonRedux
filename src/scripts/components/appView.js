@@ -30,6 +30,9 @@ class AppView extends React.Component {
 					<Readout {...this.state} />
 					<Board {...this.state} />
 				</div>
+				<div className="footer"> 
+					<a target="_blank" href="https://github.com/magentanova/simonRedux">source</a>
+				</div>
 			</div>
 			)
 	}
