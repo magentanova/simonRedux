@@ -65,7 +65,9 @@ class Pad extends React.Component {
 			<button
 				disabled={this.props.turn !== 'player'}
 				onMouseDown={this.lightColor}
+				onTouchStart={this.lightColor}
 				onMouseUp={unlightColor}
+				onTouchEnd={unlightColor}
 				value={this.props.color} 
 				className={`pad ${this.props.color} ${this.props.litColor === this.props.color ? 'lit' : ''}`} >
 			</button>
