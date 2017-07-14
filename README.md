@@ -13,3 +13,4 @@ This game was made with Redux as a means of familiarizing myself with that frame
   - fix lingering lit panel when player turn ends
   - style the "go" and "restart" buttons
   - create a much better gameover screen
+  - sounds!
