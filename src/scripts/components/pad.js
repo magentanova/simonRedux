@@ -1,24 +1,23 @@
-import React from 'react'
+import React from "react"
 
-import store from '../state'
-import {LIGHT_DURATION} from '../constants.js'
+import store from "../state"
+import { LIGHT_DURATION } from "../constants.js"
 
 const lightColor = e => {
 	store.dispatch({
-		type: 'LIGHT_PAD',
+		type: "LIGHT_PAD",
 		litColor: e.target.value
 	})
 
 	store.dispatch({
-		type: 'ADD_PLAYER_COLOR',
+		type: "ADD_PLAYER_COLOR",
 		color: e.target.value
 	})
-
 }
 
-const unlightColor = e=> {
+const unlightColor = e => {
 	store.dispatch({
-		type: 'LIGHT_PAD',
+		type: "LIGHT_PAD",
 		litColor: null
 	})
 }
@@ -26,57 +25,57 @@ const unlightColor = e=> {
 class Pad extends React.Component {
 	constructor(props) {
 		super(props)
-		this.lightColor = this.lightColor.bind(this) 
+		this.state = {
+			isMobile: navigator.userAgent.toLowerCase().includes("mobi")
+				? true
+				: false
+		}
+		this.lightColor = this.lightColor.bind(this)
 	}
 
 	lightColor() {
 		store.dispatch({
-			type: 'LIGHT_PAD',
+			type: "LIGHT_PAD",
 			litColor: this.props.color
 		})
 
 		store.dispatch({
-			type: 'ADD_PLAYER_COLOR',
+			type: "ADD_PLAYER_COLOR",
 			color: this.props.color
 		})
 
 		var index = this.props.playerSequence.length
 
-		console.log(this.props.playerSequence, this.props.aiSequence)
 		// if you lose
 		if (this.props.color !== this.props.aiSequence[index]) {
 			store.dispatch({
-				type: 'LOSE'
+				type: "LOSE"
 			})
-		}
-
-		// if you beat the level
-		else {
+		} else {
+			// if you beat the level
 			if (index + 1 === this.props.aiSequence.length) {
 				store.dispatch({
-					type: 'BEAT_LEVEL'
+					type: "BEAT_LEVEL"
 				})
 			}
 		}
 	}
 
 	render() {
+		var mobileDevice = this.state.isMobile
 		return (
 			<button
-				disabled={this.props.turn !== 'player'}
-				onMouseDown={this.lightColor}
-				onTouchStart={this.lightColor}
-				onMouseUp={unlightColor}
-				onTouchEnd={unlightColor}
-				value={this.props.color} 
-				className={`pad ${this.props.color} ${this.props.litColor === this.props.color ? 'lit' : ''}`} >
-			</button>
-
-			)
+				disabled={this.props.turn !== "player"}
+				onMouseDown={mobileDevice ? null : this.lightColor}
+				onTouchStart={mobileDevice ? this.lightColor : null}
+				onMouseUp={mobileDevice ? null : unlightColor}
+				onTouchEnd={mobileDevice ? unlightColor : null}
+				value={this.props.color}
+				className={`pad ${this.props.color} ${this.props.litColor === this.props.color ? "lit" : ""}`}
+			/>
+		)
 	}
 }
-// const Pad = props => 
-
-
+// const Pad = props =>
 
 export default Pad

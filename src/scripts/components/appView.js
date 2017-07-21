@@ -23,6 +23,7 @@ class AppView extends React.Component {
 	}
 
 	render() {
+		
 		return (
 			<div className="app-view">
 				<GameOver loss={this.state.loss} restart={restart} />
