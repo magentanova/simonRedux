@@ -25,11 +25,6 @@ const unlightColor = e => {
 class Pad extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			isMobile: navigator.userAgent.toLowerCase().includes("mobi")
-				? true
-				: false
-		}
 		this.lightColor = this.lightColor.bind(this)
 	}
 
@@ -62,14 +57,16 @@ class Pad extends React.Component {
 	}
 
 	render() {
-		var mobileDevice = this.state.isMobile
+
+		var onMobileDevice = this.props.onMobileDevice
+
 		return (
 			<button
 				disabled={this.props.turn !== "player"}
-				onMouseDown={mobileDevice ? null : this.lightColor}
-				onTouchStart={mobileDevice ? this.lightColor : null}
-				onMouseUp={mobileDevice ? null : unlightColor}
-				onTouchEnd={mobileDevice ? unlightColor : null}
+				onMouseDown={onMobileDevice ? null : this.lightColor}
+				onTouchStart={onMobileDevice ? this.lightColor : null}
+				onMouseUp={onMobileDevice ? null : unlightColor}
+				onTouchEnd={onMobileDevice ? unlightColor : null}
 				value={this.props.color}
 				className={`pad ${this.props.color} ${this.props.litColor === this.props.color ? "lit" : ""}`}
 			/>
