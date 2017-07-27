@@ -9,7 +9,10 @@ $offWhite: #ddd;
 	font-family: Helvetica, Arial, sans-serif;
 	box-sizing: border-box;
 	font-size: 0;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent; 
 }
+
 
 html {
 	font-size: 16px;
